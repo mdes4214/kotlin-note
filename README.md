@@ -20,20 +20,20 @@ Note for Kotlin learning
 4. [References](#references)
 # What is Kotlin <a name="what"></a>
 # Why you should use Kotlin <a name="why"></a>
-* ## Compatible with Java <a name="compatible"></a>
-* ## Suitable with and easy to use in Spring Boot <a name="suitable"></a>
-* ## Simple to transfor from Java using IntelliJ with ignorable effort <a name="transfor"></a>
-* ## NO semicolon <a name="semicolon"></a>
-* ## Null pointer check <a name="null"></a>
+### Compatible with Java <a name="compatible"></a>
+### Suitable with and easy to use in Spring Boot <a name="suitable"></a>
+### Simple to transfor from Java using IntelliJ with ignorable effort <a name="transfor"></a>
+### NO semicolon <a name="semicolon"></a>
+### Null pointer check <a name="null"></a>
 # Useful Features <a name="features"></a>
-* ## Elvis operator <a name="elvis"></a>
-* ## var & val <a name="var"></a>
-* ## String format ${} <a name="string"></a>
-* ## Mutable collection <a name="mutable"></a>
-* ## data class <a name="data"></a>
-* ## enum & sealed class <a name="enum"></a>
-* ## more powerful Lambda expression <a name="lambda"></a>
-* ## and more ... <a name="more"></a>
+### Elvis operator <a name="elvis"></a>
+### var & val <a name="var"></a>
+### String format ${} <a name="string"></a>
+### Mutable collection <a name="mutable"></a>
+### data class <a name="data"></a>
+### enum & sealed class <a name="enum"></a>
+### more powerful Lambda expression <a name="lambda"></a>
+### and more ... <a name="more"></a>
 # References <a name="references"></a>
 1. [Kotlin Proframming Language](https://kotlinlang.org/)
 2. [Kotlin Wiki](https://en.wikipedia.org/wiki/Kotlin_(programming_language))
