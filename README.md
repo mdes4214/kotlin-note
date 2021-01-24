@@ -118,6 +118,31 @@ Plugins
 
 ## Simple to transform from Java using IntelliJ with ignorable effort <a name="transfor"></a>
 ## NO semicolon <a name="semicolon"></a>
+In Kotlin, we don't need to use semicolon in the end of statement.  
+Java
+``` java
+String str = "Hello";
+String strAppend = str + " World!!";
+```
+Kotlin
+``` kotlin
+val str = "Hello"
+val strAppend = "$str World!!"
+```
+We only need to add semicolon in these two cases:
+1. An enum class that has a list of enums and also properties or functions
+``` kotlin
+enum class Things {
+    ONE, TWO;
+    
+    fun isOne(): Boolean = this == ONE
+}
+```
+2. Two statements in one line
+``` kotlin
+val str = "Hello"; println(str)
+```
+
 ## Null pointer check <a name="null"></a>
 # Useful Features <a name="features"></a>
 ## Elvis operator <a name="elvis"></a>
