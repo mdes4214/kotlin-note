@@ -19,6 +19,13 @@ Note for Kotlin learning
     * [and more ...](#more)
 4. [References](#references)
 # What is Kotlin <a name="what"></a>
+> Keyword: Cross-platform with JVM, Static typed programming language, Combines the features of OOPs and functional-oriented programming.
+
+Kotlin (/ˈkɒtlɪn/) is a cross-platform, statically typed, general-purpose programming language with type inference. Kotlin is designed to interoperate fully with Java, and the JVM version of Kotlin's standard library depends on the Java Class Library, but type inference allows its syntax to be more concise. Kotlin mainly targets the JVM, but also compiles to JavaScript (e.g. for frontend web applications using React) or native code (via LLVM), e.g. for native iOS apps sharing business logic with Android apps. Language development costs are borne by JetBrains, while the Kotlin Foundation protects the Kotlin trademark.
+
+On 7 May 2019, Google announced that the Kotlin programming language is now its preferred language for Android app developers. As a result many developers have switched to Kotlin Since the release of Android Studio 3.0 in October 2017, Kotlin has been included as an alternative to the standard Java compiler. The Android Kotlin compiler targets Java 6 by default, but lets the programmer choose to target Java 8 up to 13, for optimization, or more features.
+
+> Though in this note, we more focus on Kotlin applying in Web Service.
 # Why you should use Kotlin <a name="why"></a>
 ### Compatible with Java <a name="compatible"></a>
 ### Suitable with and easy to use in Spring Boot <a name="suitable"></a>
@@ -27,7 +34,7 @@ Note for Kotlin learning
 ### Null pointer check <a name="null"></a>
 # Useful Features <a name="features"></a>
 ### Elvis operator <a name="elvis"></a>
-### var & val <a name="var"></a>
+### type inference - var & val <a name="var"></a>
 ### String format ${} <a name="string"></a>
 ### Mutable collection <a name="mutable"></a>
 ### data class <a name="data"></a>
