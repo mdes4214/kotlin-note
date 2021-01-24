@@ -30,8 +30,7 @@ On 7 May 2019, Google announced that the Kotlin programming language is now its 
 ## Interoperable with Java <a name="compatible"></a>
 We can use all the Java Libraries in Kotlin, and vice versa. Thus, in a Java project, we can partially add or step by step to transform the codes to Kotlin.
 
-e.g.  
-In a Java library, we have some codes like this.
+We have a Java library like this.
 ``` java
 package sample.java.library;
 
@@ -41,7 +40,7 @@ public class HelloWorld {
    }
 }
 ```
-We can directly import and use the class in Kotlin.
+And we can directly import and use the class in Kotlin.
 ``` kotlin
 import sample.java.library
 
@@ -144,6 +143,33 @@ val str = "Hello"; println(str)
 ```
 
 ## Null pointer check <a name="null"></a>
+In Kotlin, there are !! and ? operators, which are used for null safety. This feature can pre-check the codes to prevent NullPointerException in runtime caused by thoughtless programmer.
+
+Regular initialization means non-null by default.
+``` kotlin
+var a: String = "abc" // Regular initialization means non-null by default
+a = null // compilation error
+```
+If we need to declare a nullable variable.
+``` kotlin
+var b: String? = "abc" // can be set null
+b = null // ok
+print(b)
+```
+And if we consume that the variable won't be null.
+``` kotlin
+var b: String? = "abc" // can be set null
+if (StringUtils.isEmpty(b)) {
+   return
+} else {
+   doSomething(b!!) // if no "!!", it will has a compilation error
+}
+
+fun doSomething(b: String) { // this function only accept non-null parameter
+   ...
+}
+```
+
 # Useful Features <a name="features"></a>
 ## Elvis operator <a name="elvis"></a>
 ## type inference - var & val <a name="var"></a>
