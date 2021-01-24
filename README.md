@@ -143,7 +143,7 @@ val str = "Hello"; println(str)
 ```
 
 ## Null pointer check <a name="null"></a>
-In Kotlin, there are !! and ? operators, which are used for null safety. This feature can pre-check the codes to prevent NullPointerException in runtime caused by thoughtless programmer.
+In Kotlin, there are `!!` and `?` operators, which are used for null safety. This feature can pre-check the codes to prevent NullPointerException in runtime caused by thoughtless programmer.
 
 Regular initialization means non-null by default.
 ``` kotlin
