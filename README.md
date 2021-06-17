@@ -19,13 +19,29 @@ Note for Kotlin learning
     * [and more ...](#more)
 4. [References](#references)
 # What is Kotlin <a name="what"></a>
+![Kotlin](img/kotlin.PNG)
 > Keywords: Cross-platform with JVM, Static typed programming language, Combines the features of OOPs and functional-oriented programming.
 
-Kotlin (/ˈkɒtlɪn/) is a cross-platform, statically typed, general-purpose programming language with type inference. Kotlin is designed to interoperate fully with Java, and the JVM version of Kotlin's standard library depends on the Java Class Library, but type inference allows its syntax to be more concise. Kotlin mainly targets the JVM, but also compiles to JavaScript (e.g. for frontend web applications using React) or native code (via LLVM), e.g. for native iOS apps sharing business logic with Android apps. Language development costs are borne by JetBrains, while the Kotlin Foundation protects the Kotlin trademark.
+Kotlin (/ˈkɒtlɪn/) is a **cross-platform, statically typed**, general-purpose programming language with type inference. Kotlin is designed to interoperate fully with Java, and the JVM version of Kotlin's standard library depends on the Java Class Library, but type inference allows its syntax to be more concise. Kotlin mainly targets the **JVM**, but also compiles to JavaScript (e.g. for frontend web applications using React) or native code (via LLVM), e.g. for native iOS apps sharing business logic with Android apps. Language development costs are borne by JetBrains, while the Kotlin Foundation protects the Kotlin trademark.
 
 On 7 May 2019, Google announced that the Kotlin programming language is now its preferred language for Android app developers. As a result many developers have switched to Kotlin Since the release of Android Studio 3.0 in October 2017, Kotlin has been included as an alternative to the standard Java compiler. The Android Kotlin compiler targets Java 6 by default, but lets the programmer choose to target Java 8 up to 13, for optimization, or more features.
 
-> Though in this note, we more focus on Kotlin applying in Web Service.
+> Though in this note, we more focus on Kotlin applying in **Web Service**.
+
+In Stack Overflow Annual Developer Survey 2020, Kotlin got 4th in developers most loved language, 6th in most wanted, and 13th in most popular.
+
+> Most Loved
+> ![Most Loved](img/most_loved.PNG)
+
+> Most Wanted
+> ![Most Wanted](img/most_wanted.PNG)
+
+> Most Popular
+> ![Most Popular](img/most_popular.PNG)
+
+And the size of Kotlin communities in Q3, 2020 ranked 9th.
+![Community Size](img/community_size.PNG)
+
 # Why you should use Kotlin <a name="why"></a>
 ## Interoperable with Java <a name="compatible"></a>
 We can use all the Java Libraries in Kotlin, and vice versa. Thus, in a Java project, we can partially add or step by step to transform the codes to Kotlin.
@@ -181,11 +197,17 @@ fun doSomething(b: String) { // this function only accept non-null parameter
 ## and more ... <a name="more"></a>
 # References <a name="references"></a>
 1. [Kotlin Proframming Language](https://kotlinlang.org/)
-2. [Kotlin Wiki](https://en.wikipedia.org/wiki/Kotlin_(programming_language))
-3. [Elvis Operator](https://zh-tw.coderbridge.com/series/794d69188e074c5e81abedfcb649b809/posts/f84fef99ba074b16aa520c7f095fe737)
-4. [Spring Boot and Kotlin](https://www.baeldung.com/kotlin/spring-boot-kotlin)
-5. [Create a Java and Kotlin Project with Maven](https://www.baeldung.com/kotlin/maven-java-project)
-6. [初探 Kotlin Lambda 表達式](https://medium.com/@louis383/%E5%88%9D%E6%8E%A2-kotlin-lambda-%E8%A1%A8%E9%81%94%E5%BC%8F-cfe8796c9fac)
-7. [Java vs. Kotlin: Lambdas and Functions](https://dzone.com/articles/java-vs-kotlin)
-8. [Kotlin vs Java: What's the Difference?](https://www.guru99.com/kotlin-vs-java-difference.html)
-9. [What are the rules of semicolon inference?](https://stackoverflow.com/questions/39318457/what-are-the-rules-of-semicolon-inference)
+2. [Kotlin Language Spec](https://kotlinlang.org/spec/introduction.html)
+3. [Kotlin Starter Pack - Type inference, checks, and smart casts](https://www.codingame.com/playgrounds/5529/kotlin-starter-pack/type-inference-checks-and-smart-casts)
+4. [Kotlin Wiki](https://en.wikipedia.org/wiki/Kotlin_(programming_language))
+5. [Elvis Operator](https://zh-tw.coderbridge.com/series/794d69188e074c5e81abedfcb649b809/posts/f84fef99ba074b16aa520c7f095fe737)
+6. [長的帥，連Code都是香的 - Elvis Operator ?:](https://ithelp.ithome.com.tw/articles/10231089)
+7. [Spring Boot and Kotlin](https://www.baeldung.com/kotlin/spring-boot-kotlin)
+8. [Create a Java and Kotlin Project with Maven](https://www.baeldung.com/kotlin/maven-java-project)
+9. [初探 Kotlin Lambda 表達式](https://medium.com/@louis383/%E5%88%9D%E6%8E%A2-kotlin-lambda-%E8%A1%A8%E9%81%94%E5%BC%8F-cfe8796c9fac)
+10. [Java vs. Kotlin: Lambdas and Functions](https://dzone.com/articles/java-vs-kotlin)
+11. [Kotlin vs Java: What's the Difference?](https://www.guru99.com/kotlin-vs-java-difference.html)
+12. [What are the rules of semicolon inference?](https://stackoverflow.com/questions/39318457/what-are-the-rules-of-semicolon-inference)
+13. [Project Lombok](https://projectlombok.org/)
+14. [Stack Overflow Annual Developer Survey 2020](https://insights.stackoverflow.com/survey/2020#overview)
+15. [SlashData State of the Developer Nation Q3 2020 Report](https://slashdata-website-cms.s3.amazonaws.com/sample_reports/y7fzAZ8e5XuKCL1Q.pdf)
