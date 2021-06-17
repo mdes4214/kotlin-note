@@ -395,12 +395,127 @@ println("str list: $strs, list size: ${strs.size}") // "str list: [Hello, World,
 
 ## Difference in String method implement with Java <a name="diffstring"></a>
 
+There are some implement of String methods in Kotlin may be different from Java.
 
+String split – Java vs. Kotlin vs. apache StringUtils
+``` kotlin
+val str = "A / B C /"
+(str as java.lang.String).split(" /")           // ["A", " B C"] : String[]
+(str as kotlin.String).split(" /")              // ["A", " B C", ""] : List<String>
+(str as kotlin.String).split(" /".toRegex())    // ["A", " B C", ""] : List<String>
+StringUtils.split(str, " /")                    // ["A", "B", "C"] : String[]
+StringUtils.splitByWholeSeparator(str, " /")    // ["A", " B C", ""] : String[]
+```
+
+In Java Official API document, you can find out `public String[] split(String regex, int limit)`. The `limit` is 0 as default, and the pattern will be applied as many times as possible, the array can have any length, and trailing empty strings will be discarded. In other words, only if `limit = 0`, Java String split will trim the empty strings. Otherwise, Kotlin String split is smoother on `limit` parameter.
+``` java
+String str = "a:b:c:d:";
+str.split(":", limit);
+// limit
+// limit < 0 -> ["a", "b", "c", "d", ""]
+// limit = 0 -> ["a", "b", "c", "d"] => special case
+// limit = 1 -> ["a:b:c:d:"]
+// limit = 2 -> ["a", "b:c:d:"]
+// limit = 3 -> ["a", "b", "c:d:"]
+// limit = 4 -> ["a", "b", "c", "d:"]
+// limit = 5 -> ["a", "b", "c", "d", ""] (goes on the same as with limit < 0)
+// limit = 6 -> ["a", "b", "c", "d", ""]
+```
 
 ## Mutable collection <a name="mutable"></a>
+
+Unlike many languages, Kotlin distinguishes between **mutable** and **immutable** collections (lists, sets, maps, etc). Precise control over exactly when collections can be edited is useful for eliminating bugs, and for designing good APIs.
+
+``` kotlin
+val numbers = listOf(1, 2, 3, 4, 5)
+numbers.add(6) // Compile error - Unresolved reference: add
+```
+
+If the collection need to be able to edit, we should use `Mutable`
+
+``` kotlin
+val numbers = mutableListOf(1, 2, 3, 4, 5)
+numbers.add(6) // [1, 2, 3, 4, 5, 6]
+```
+
+Same as `MutableMap`, `MutableSet`.
+
+
 ## Data class <a name="data"></a>
+
+In Java, we usually use IDE to generate POJO, e.g.,
+- generate Getters and Setters
+- generate hashCode() and equals()
+- generate toString()
+
+Although there are some libraries like Lombok, can use annotation to simplify the process.
+
+``` java
+@Getter
+@Setter
+@EqualsAndHashCode
+@ToString
+public class User {
+   private int id;
+   private String name;
+}
+```
+
+And finally can become
+
+``` java
+@Data
+public class User {
+   private int id;
+   private String name;
+}
+```
+
+In Kotlin, we can easly get this by `data class`.
+
+``` kotlin
+data class User (
+   var id: int
+   var name: String
+) {}
+
+// setter
+user.id = 123
+user.name = "Tom"
+
+// getter
+println("${user.id} / ${user.name}") // "123 / Tom"
+```
+
 ## Enum & sealed class <a name="enum"></a>
+
+Sealed classes are used for representing restricted class hierarchies, when a value can have one of the types from a limited set, but cannot have any other type. They are, in a sense, **an extension of enum classes**: the set of values for an enum type is also restricted, but each enum constant exists only as a single instance, whereas a subclass of a sealed class can have multiple instances which can contain state.
+
+``` kotlin
+sealed class Expr
+data class Const(val number: Double) : Expr()
+data class Sum(val e1: Expr, val e2: Expr) : Expr()
+object NotANumber : Expr()
+```
+
+- A sealed class is abstract by itself, it cannot be instantiated directly and can have abstract members.
+- Sealed classes are not allowed to have non-private constructors (their constructors are private by default).
+- Note that classes which extend subclasses of a sealed class (indirect inheritors) can be placed anywhere, not necessarily in the same file.
+- The key benefit of using sealed classes comes into play when you use them in a `when` expression. If it's possible to verify that the statement covers all cases, you don't need to add an `else` clause to the statement.
+
+``` kotlin
+fun eval(expr: Expr): Double = when(expr) {
+    is Const -> expr.number
+    is Sum -> eval(expr.e1) + eval(expr.e2)
+    NotANumber -> Double.NaN
+    // the `else` clause is not required because we've covered all the cases
+}
+```
+
 ## And more ... <a name="more"></a>
+
+There are more amazing features in Kotlin waiting for you to discover!
+
 # References <a name="references"></a>
 1. [Kotlin Proframming Language](https://kotlinlang.org/)
 2. [Kotlin Language Spec](https://kotlinlang.org/spec/introduction.html)
