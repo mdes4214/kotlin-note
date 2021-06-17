@@ -339,9 +339,64 @@ println("$result2") // [3, 4, 5]
 
 # Useful Features <a name="features"></a>
 ## Elvis operator <a name="elvis"></a>
+
+The name *Elvis operator* refers to the fact that when its common notation. `?:`, is viewed sideways, it resembles an emoticon of Elvis Presley with his quaff.
+
+> But it also looks like Giorno Giovanna in JOJOm haha.
+
+![Elvis Operator](img/elvis_operator.PNG)
+
+This operator handle two states.
+1.	If the first operand is NOT null, it will return the first operand
+2.	If the first operand is null, then return the second operand
+
+``` kotlin
+val firstOperand1: String? = "Non-null String"
+val firstOperand2: String? = null
+val secondOperand: String = "Non-null String 2"
+
+val result1 = firstOperand1 ?: secondOperand // result1 = "Non-null String"
+val result2 = firstOperand2 ?: secondOperand // result2 = "Non-null String 2"
+```
+
 ## Variable var & val <a name="variable"></a>
+
+When the variable shouldn't be modified, it should be `val`, otherwise will be `var`.
+
+``` kotlin
+val constVal = "CONST_VALUE" // similar with `final` in Java
+var canModifyVal = "This value can be modified."
+```
+
 ## String format ${} <a name="string"></a>
+
+If we put aside `StringBuilder`, we may concate String in Java like this:
+
+``` java
+String hello = "Hello";
+String world = "World";
+String helloWorld = hello + " " + world + "!!"; // "Hello World!!"
+```
+
+In Kotlin, we have `$` operator to do this concisely.
+
+``` kotlin
+val hello = "Hello"
+val world = "World"
+val helloWorld = "$hello $world!!" // "Hello World!!"
+```
+
+Also, it implicit `toString()` method. And if we want to use properties or functions in `$` it can be wrapped in `{}`.
+
+``` kotlin
+val strs = mutableListOf("Hello", "World", "!!")
+println("str list: $strs, list size: ${strs.size}") // "str list: [Hello, World, !!], list size: 3"
+```
+
 ## Difference in String method implement with Java <a name="diffstring"></a>
+
+
+
 ## Mutable collection <a name="mutable"></a>
 ## Data class <a name="data"></a>
 ## Enum & sealed class <a name="enum"></a>
