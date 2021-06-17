@@ -6,6 +6,7 @@ Note for Kotlin learning
     * [Compatible with Java](#compatible)
     * [Suitable with and easy to use in Spring Boot](#suitable)
     * [Simple to transfor from Java using IntelliJ with ignorable effort](#transfor)
+    * [Type inference & Smart cast](#typeinference)
     * [NO semicolon](#semicolon)
     * [Null pointer check](#null)
 3. [Useful Features](#features)
@@ -80,15 +81,7 @@ Dependencies
 </properties>
 
 <dependencies>
-   <dependency>
-      <groupId>org.jetbrains.kotlin</groupId>
-      <artifactId>kotlin-stdlib-jdk8</artifactId>
-      <version>${kotlin.version}</version>
-   </dependency>
-   <dependency>
-      <groupId>org.jetbrains.kotlin</groupId>
-      <artifactId>kotlin-reflect</artifactId>
-   </dependency>
+   <!-- this library include kotlin-stdlib & kotlin-reflect -->
    <dependency>
       <groupId>com.fasterxml.jackson.module</groupId>
       <artifactId>jackson-module-kotlin</artifactId>
@@ -100,8 +93,19 @@ Plugins
 ``` xml
 <plugin>
     <artifactId>kotlin-maven-plugin</artifactId>
-    <groupId>org.jetbrains.kotlin</groupId>
-    <version>${kotlin.version}</version>
+    <groupId>org.jetbrains.kotlin</groupId>    
+    <dependencies>
+        <dependency>
+           <groupId>org.jetbrains.kotlin</groupId>
+           <artifactId>kotlin-maven-allopen</artifactId>
+           <version>${kotlin.version}</version>
+        </dependency>
+        <dependency>
+           <groupId>org.jetbrains.kotlin</groupId>
+           <artifactId>kotlin-maven-noarg</artifactId>
+           <version>${kotlin.version}</version>
+        </dependency>
+    </dependencies>
     <executions>
         <execution>
             <id>compile</id>
@@ -132,6 +136,92 @@ Plugins
 ```
 
 ## Simple to transform from Java using IntelliJ with ignorable effort <a name="transfor"></a>
+With the strong function of IntelliJ, we can leverage it to convert Java file to Kotlin code.
+![Covert to Kotlin](covert_to_kotlin.PNG)
+After conversion, we almost no need to do anything. While sometimes to fix the complilation error, we need to modify the null safety (add `!!`, `?`, or other null value check), getter and setter (in Kotlin, `object.getSomething()` is simplify as `object.something`).
+
+## Type inference & Smart cast <a name="typeinference"></a>
+Kotlin is a **statically type language**. Regarding to that specification, that means that the compiler will know what is the type of a variable or the return type of a function. That's why you can write `val str = “hello”` instead of `val str: String = “hello”`, or even `fun sum(ints: List<Int>) = ints.sum()` instead of `fun sum(ints: List<Int>): Int = ints.sum()`. In a lot of cases you will be allowed to omit the declaration type, so your code should be more concise.
+
+``` kotlin
+val str: String = “Hello”
+val str = “Hello” // same as above, but more concise
+```
+
+There are two kinds of *type inference* supported by Kotlin.
+1.	*Local type inference*: for inferring types of expressions locally, in statement/expression scope.
+2.	*Function signature type inference*: for inferring types of function return values and/or parameters.
+
+### Smart cast
+
+But before type inference, we need to talk *smart cast* first.
+
+``` kotlin
+// Note: the most important exception when smart casts are used in type inference is direct property declaration.
+
+fun noSmartCastInInference() {
+   var a: Any? = null
+   if (a == null) return
+   var c = a // Direct property declaration
+
+   c // Declared type of `c` is Any?
+     // However, here it’s smart casted to Any
+}
+
+fun <T> id(a: T): T = a
+
+fun smartCastInInference() {
+   var a: Any? = null
+   if (a == null) return
+   var c = id(a)
+   
+   c // Declared type of `c` is Any
+}
+```
+### Local Type Inference
+
+Local type inference in Kotlin is the process of deducing the compile-time types of expressions, lambda expression parameters and properties.
+
+Type inference in Kotlin is **bidirectional**; meaning the types of expressions may be derived not only from their arguments, but from their usage as well. Note that, albeit bidirectional, this process is still local, meaning it processes one statement at a time, strictly in the order of their appearance in a scope; e.g., the type of property in statement S1 that goes before statement S2 cannot be inferred based on how S1 is used in S2.
+
+### Function Signature Type Inference
+
+Function signature type inference is a variant of local type inference, which is performed for *[function declarations], lambda literals and anonymous function declarations*.
+
+Named and anonymous function declarations
+
+``` kotlin
+fun <T> foo(): T { … }
+fun bar(): Int = foo() // an expected constraint T’ <: Int
+// allows the result of `foo` to be infereed automatically.
+```
+
+Statements with lambda literals
+
+``` kotlin
+fun <T> foo(): T { … }
+fun <R> run(body: () -> R): R { … }
+
+fun bar() {
+   val x = run {
+      run {
+         run {
+            foo<Int>() // last expression inferred to be of type Int
+         } // this lambda is inferred to be of type () -> Int
+      } // this lambda is inferred to be of type () -> Int
+   } // this lambda is inferred to be of type () -> Int
+   // x is inferred to be type Int
+
+   val y: Double = run { // this lambda has an external constraint R’ <: Double
+      run { // this lambda has an external constraint R’ <: Double
+         foo() // this call has an external constraint T’ <: Double
+               // allowing to infer T to be Double in foo
+      }
+   }
+}
+```
+
+
 ## NO semicolon <a name="semicolon"></a>
 In Kotlin, we don't need to use semicolon in the end of statement.  
 Java
