@@ -9,15 +9,16 @@ Note for Kotlin learning
     * [Type inference & Smart cast](#typeinference)
     * [NO semicolon](#semicolon)
     * [Null pointer check](#null)
+    * [More powerful Lambda expression](#lambda)
 3. [Useful Features](#features)
     * [Elvis operator](#elvis)
-    * [var & val](#var)
+    * [Variable var & val](#variable)
     * [String format ${}](#string)
+    * [Difference in String method implement with Java](#diffstring)
     * [Mutable collection](#mutable)
-    * [data class](#data)
-    * [enum & sealed class](#enum)
-    * [more powerful Lambda expression](#lambda)
-    * [and more ...](#more)
+    * [Data class](#data)
+    * [Enum & sealed class](#enum)
+    * [And more ...](#more)
 4. [References](#references)
 # What is Kotlin <a name="what"></a>
 ![Kotlin](img/kotlin.PNG)
@@ -143,11 +144,11 @@ With the strong function of IntelliJ, we can leverage it to convert Java file to
 After conversion, we almost no need to do anything. While sometimes to fix the complilation error, we need to modify the null safety (add `!!`, `?`, or other null value check), getter and setter (in Kotlin, `object.getSomething()` is simplify as `object.something`).
 
 ## Type inference & Smart cast <a name="typeinference"></a>
-Kotlin is a **statically type language**. Regarding to that specification, that means that the compiler will know what is the type of a variable or the return type of a function. That's why you can write `val str = “hello”` instead of `val str: String = “hello”`, or even `fun sum(ints: List<Int>) = ints.sum()` instead of `fun sum(ints: List<Int>): Int = ints.sum()`. In a lot of cases you will be allowed to omit the declaration type, so your code should be more concise.
+Kotlin is a **statically type language**. Regarding to that specification, that means that the compiler will know what is the type of a variable or the return type of a function. That's why you can write `val str = "hello"` instead of `val str: String = "hello"`, or even `fun sum(ints: List<Int>) = ints.sum()` instead of `fun sum(ints: List<Int>): Int = ints.sum()`. In a lot of cases you will be allowed to omit the declaration type, so your code should be more concise.
 
 ``` kotlin
-val str: String = “Hello”
-val str = “Hello” // same as above, but more concise
+val str: String = "Hello"
+val str = "Hello" // same as above, but more concise
 ```
 
 There are two kinds of *type inference* supported by Kotlin.
@@ -277,16 +278,74 @@ fun doSomething(b: String) { // this function only accept non-null parameter
    ...
 }
 ```
+## More powerful Lambda expression <a name="lambda"></a>
+
+There are many APIs in Kotlin Standard Library using Lambda function, even `String`, `Collection`, and so on.
+![Lambda](img/lambda.PNG)
+
+### Higher-Order Functions
+
+Kotlin functions are **first-class**, which means that they can be stored in variables and data structures, passed as arguments to and returned from other higher-order functions. You can operate with functions in any way that is possible for other non-function variables.
+
+Instantiating a function type
+- Lambda Expression
+- Anonymous Function
+
+Lambda expressions and anonymous function are ‘function literals’, i.e. functions that are not declared, but passed immediately as an expression.
+
+### Lambda Expression
+A lambda expression is always surrounded by curly braces `{}`, parameter declarations in the full syntactic form go inside curly braces and have optional type annotations, the body goes after an `->` sign. If the inferred return type of the lambda is not `Unit`, the last (or possibly single) expression inside the lambda body is treated as the return value.
+
+``` kotlin
+// val action: (A, B) -> ReturnType
+val plus: (Int, Int) -> Int = { n1, n2 -> n1 + n2 }
+println("${plus(2, 3)}") // 5
+```
+
+Also, due to type inference, we can rewrite above to this:
+
+``` kotlin
+val plus = { n1: Int, n2: Int -> n1 + n2 }
+println("${plus(2, 3)}") // 5
+```
+
+### Anonymous Function
+One thing missing from the lambda expression syntax presented above is the ability to specify the return type of the function. In most cases, this is unnecessary because the return type can be inferred automatically. However, if you do need to specify it explicitly, you can use an alternative syntax: an anonymous function.
+
+An anonymous function looks very much like a regular function declaration, except that its name is omitted. Its body can be either an expression (as shown above) or a block:
+
+``` kotlin
+val numbers = mutableListOf(1, 2, 3, 4, 5)
+
+val result1 = numbers.filter(fun(number: Int): Boolean = number > 2) // body is an expression
+println("$result1") // [3, 4, 5]
+
+val result2 = numbers.filter(fun(number: Int): Boolean { return number > 2 }) // body can also be a block
+println("$result2") // [3, 4, 5]
+```
+
+The parameters and the return type are specified in the same way as for regular functions, except that the parameter types can be omitted if they can be inferred from context:
+
+``` kotlin
+val numbers = mutableListOf(1, 2, 3, 4, 5)
+
+val result1 = numbers.filter(fun(number): Boolean = number > 2) // body is an expression
+println("$result1") // [3, 4, 5]
+
+val result2 = numbers.filter(fun(number): Boolean { return number > 2 }) // body can also be a block
+println("$result2") // [3, 4, 5]
+```
+
 
 # Useful Features <a name="features"></a>
 ## Elvis operator <a name="elvis"></a>
-## type inference - var & val <a name="var"></a>
+## Variable var & val <a name="variable"></a>
 ## String format ${} <a name="string"></a>
+## Difference in String method implement with Java <a name="diffstring"></a>
 ## Mutable collection <a name="mutable"></a>
-## data class <a name="data"></a>
-## enum & sealed class <a name="enum"></a>
-## more powerful Lambda expression <a name="lambda"></a>
-## and more ... <a name="more"></a>
+## Data class <a name="data"></a>
+## Enum & sealed class <a name="enum"></a>
+## And more ... <a name="more"></a>
 # References <a name="references"></a>
 1. [Kotlin Proframming Language](https://kotlinlang.org/)
 2. [Kotlin Language Spec](https://kotlinlang.org/spec/introduction.html)
