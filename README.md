@@ -137,7 +137,9 @@ Plugins
 
 ## Simple to transform from Java using IntelliJ with ignorable effort <a name="transfor"></a>
 With the strong function of IntelliJ, we can leverage it to convert Java file to Kotlin code.
-![Covert to Kotlin](covert_to_kotlin.PNG)
+
+![Convert to Kotlin](img/convert_to_kotlin.PNG)
+
 After conversion, we almost no need to do anything. While sometimes to fix the complilation error, we need to modify the null safety (add `!!`, `?`, or other null value check), getter and setter (in Kotlin, `object.getSomething()` is simplify as `object.something`).
 
 ## Type inference & Smart cast <a name="typeinference"></a>
