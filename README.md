@@ -5,7 +5,7 @@ Note for Kotlin learning
 2. [Why you should use Kotlin](#why)
     * [Compatible with Java](#compatible)
     * [Suitable with and easy to use in Spring Boot](#suitable)
-    * [Simple to transfor from Java using IntelliJ with ignorable effort](#transfor)
+    * [Simple to be converted from Java using IntelliJ with ignorable effort](#convert)
     * [Type inference & Smart cast](#typeinference)
     * [NO semicolon](#semicolon)
     * [Null pointer check](#null)
@@ -46,7 +46,7 @@ And the size of Kotlin communities in Q3, 2020 ranked 9th.
 
 # Why you should use Kotlin <a name="why"></a>
 ## Interoperable with Java <a name="compatible"></a>
-We can use all the Java Libraries in Kotlin, and vice versa. Thus, in a Java project, we can partially add or step by step to transform the codes to Kotlin.
+We can use all the Java Libraries in Kotlin, and vice versa. Thus, in a Java project, we can partially add or step by step to convert the codes to Kotlin.
 
 We have a Java library like this.
 ``` java
@@ -136,7 +136,7 @@ Plugins
 </plugin>
 ```
 
-## Simple to transform from Java using IntelliJ with ignorable effort <a name="transfor"></a>
+## Simple to be converted from Java using IntelliJ with ignorable effort <a name="convert"></a>
 With the strong function of IntelliJ, we can leverage it to convert Java file to Kotlin code.
 
 ![Convert to Kotlin](img/convert_to_kotlin.PNG)
@@ -370,7 +370,7 @@ var canModifyVal = "This value can be modified."
 
 ## String format ${} <a name="string"></a>
 
-If we put aside `StringBuilder`, we may concate String in Java like this:
+If we put aside `StringBuilder`, we may concat String in Java like this:
 
 ``` java
 String hello = "Hello";
