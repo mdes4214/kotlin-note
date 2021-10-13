@@ -374,6 +374,8 @@ fun main() {
 - `out` type ➡️ can only be *returned from* a class
 - `in` type ➡️ can only be *passed into* a class
 
+🔍 make sure that only **safe types** are passed in and out of functions
+
 --
 
 `out` ➡️ Covariant
