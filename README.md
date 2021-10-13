@@ -1,5 +1,7 @@
-# KotlinNote
+# Kotlin Note
 Note for Kotlin learning
+# Slides
+https://mdes4214.github.io/kotlin-note/export/
 # Table of Contents
 1. [What is Kotlin](#what)
 2. [Why you should use Kotlin](#why)
@@ -475,9 +477,10 @@ In Kotlin, we can easly get this by `data class`.
 
 ``` kotlin
 data class User (
-   var id: int
-   var name: String
-) {}
+   var id: Int = 0,
+   var name: String = ""
+)
+val user = User()
 
 // setter
 user.id = 123
