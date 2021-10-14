@@ -627,6 +627,97 @@ fun square(num: Int = 5): Int = num * num
             </section>
         
             <section >
+                <h3><a id="user-content-scope-function" class="anchor" href="#scope-function" aria-hidden="true"></a>Scope Function</h3>
+<p><font size="6">🔍 When you call such a function on an object with a <em>lambda expression</em> provided, it forms a temporary scope.</font></p>
+<p>➡️ <a href="https://kotlinlang.org/docs/scope-functions.html">Scope Function</a></p>
+
+            </section>
+        
+            <section >
+                <p><img src="img/scope_function.PNG" alt=""></p>
+
+            </section>
+        
+            <section >
+                <p>Try to run this !</p>
+<pre><code class="language-kotlin=">fun testLet(str: String) =
+    str.let {
+        println(it)
+        &quot;World!&quot;
+    }.let {
+        println(it)
+    }
+
+fun testRun(str: String) =
+    run {
+        println(str)
+        &quot;Hello AGAIN!&quot;
+    }.run {
+        println(this)
+        &quot;World!&quot;
+    }.let {
+        println(it)
+    }
+
+fun testWith(str: String) =
+    with(str) {
+        println(this)
+        &quot;World!&quot;
+    }.let {
+        println(it)
+    }
+
+fun testAlso(str: String) =
+    str.also {
+        println(it)
+        &quot;World!&quot; // The expression is unused
+    }.let {
+        println(it)
+    }
+
+fun testApply(str: String) =
+    str.apply {
+        println(this)
+        &quot;World!&quot; // The expression is unused
+    }.let {
+        println(it)
+    }
+
+fun main() {
+    val str = &quot;Hello!&quot;
+    println(&quot;--- let ---&quot;)
+    testLet(str)
+    println(&quot;--- run ---&quot;)
+    testRun(str)
+    println(&quot;--- with ---&quot;)
+    testWith(str)    
+    println(&quot;--- also ---&quot;)
+    testAlso(str)
+    println(&quot;--- apply ---&quot;)
+    testApply(str)
+}
+</code></pre>
+
+            </section>
+        
+            <section >
+                <h3><a id="user-content-map--filter" class="anchor" href="#map--filter" aria-hidden="true"></a><code>map</code> &amp; <code>filter</code></h3>
+<p><font size="6">🔍 We will do a little refactor this example later</font></p>
+<pre><code class="language-kotlin=">fun main() {
+    val numbers = mutableListOf(&quot;one&quot;, &quot;two&quot;, &quot;three&quot;, &quot;four&quot;, &quot;five&quot;)
+    val filteredNumbers = numbers.map {
+        it.length // [3, 3, 5, 4, 4]
+    }.filter {
+        it &gt; 3    // the element will remain only if it &gt; 3
+    }
+
+    println(filteredNumbers) // [5, 4, 4]
+}
+</code></pre>
+
+            </section>
+        
+            <section >
                 <h3><a id="user-content-lambda-function" class="anchor" href="#lambda-function" aria-hidden="true"></a>Lambda Function</h3>
 <pre><code class="language-kotlin=">//fun square(num: Int): Int {
 //    return num * num
@@ -677,6 +768,17 @@ fun main() {
     println(str::class.java) // class java.lang.String
     
     println(str is String)   // true
+}
+</code></pre>
+
+            </section>
+        
+            <section >
+                <p>Back to the numbers filtering example</p>
+<p><font size="6">➡️ more simple and clear about <strong>what</strong> to do</font></p>
+<pre><code class="language-kotlin=">fun main() {
+    val numbers = mutableListOf(&quot;one&quot;, &quot;two&quot;, &quot;three&quot;, &quot;four&quot;, &quot;five&quot;)
+    numbers.map { it.length }.filter { it &gt; 3 }.let (::println) // [5, 4, 4]
 }
 </code></pre>
 

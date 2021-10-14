@@ -308,6 +308,99 @@ fun square(num: Int = 5): Int = num * num
 
 --
 
+### Scope Function
+
+<font size="6">🔍 When you call such a function on an object with a *lambda expression* provided, it forms a temporary scope.</font>
+
+➡️ [Scope Function](https://kotlinlang.org/docs/scope-functions.html)
+
+--
+
+![](img/scope_function.PNG)
+
+--
+
+Try to run this !
+```kotlin=
+fun testLet(str: String) =
+    str.let {
+        println(it)
+        "World!"
+    }.let {
+        println(it)
+    }
+
+fun testRun(str: String) =
+    run {
+        println(str)
+        "Hello AGAIN!"
+    }.run {
+        println(this)
+        "World!"
+    }.let {
+        println(it)
+    }
+
+fun testWith(str: String) =
+    with(str) {
+        println(this)
+        "World!"
+    }.let {
+        println(it)
+    }
+
+fun testAlso(str: String) =
+    str.also {
+        println(it)
+        "World!" // The expression is unused
+    }.let {
+        println(it)
+    }
+
+fun testApply(str: String) =
+    str.apply {
+        println(this)
+        "World!" // The expression is unused
+    }.let {
+        println(it)
+    }
+
+fun main() {
+    val str = "Hello!"
+    println("--- let ---")
+    testLet(str)
+    println("--- run ---")
+    testRun(str)
+    println("--- with ---")
+    testWith(str)    
+    println("--- also ---")
+    testAlso(str)
+    println("--- apply ---")
+    testApply(str)
+}
+```
+
+--
+
+### `map` & `filter`
+
+<font size="6">🔍 We will do a little refactor this example later</font>
+
+```kotlin=
+fun main() {
+    val numbers = mutableListOf("one", "two", "three", "four", "five")
+    val filteredNumbers = numbers.map {
+        it.length // [3, 3, 5, 4, 4]
+    }.filter {
+        it > 3    // the element will remain only if it > 3
+    }
+
+    println(filteredNumbers) // [5, 4, 4]
+}
+```
+
+--
+
 ### Lambda Function
 
 ```kotlin=
@@ -363,6 +456,19 @@ fun main() {
     println(str::class.java) // class java.lang.String
     
     println(str is String)   // true
+}
+```
+
+--
+
+Back to the numbers filtering example
+
+<font size="6">➡️ more simple and clear about **what** to do</font>
+
+```kotlin=
+fun main() {
+    val numbers = mutableListOf("one", "two", "three", "four", "five")
+    numbers.map { it.length }.filter { it > 3 }.let (::println) // [5, 4, 4]
 }
 ```
 
