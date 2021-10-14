@@ -71,6 +71,8 @@ Jack Lo
 
 ### [Kotlin Bootcamp](https://developer.android.com/courses/kotlin-bootcamp/overview)
 
+- [Kotlin Playground](https://play.kotlinlang.org/)
+
 ---
 
 ### What is Kotlin
@@ -319,6 +321,53 @@ val square: (Int) -> Int = { num -> num * num }
 
 --
 
+### Function Reference
+
+➡️ a part of [Reflection](https://kotlinlang.org/docs/reflection.html)
+
+- Use `::` to convert a function to lambda
+- Then as a function type value, it can be **passed to another function**
+
+```kotlin=
+fun square(num: Int): Int {
+    return num * num
+}
+
+// `::square` equals to
+// val square: (Int) -> Int = { num -> num * num }
+
+fun opThenAddAnotherNum(num1: Int, num2: Int, op: (Int) -> Int): Int {
+    return num1 + op(num2)
+}
+
+fun main() {
+    println(square(5))     // 25
+    println(::square)      // function square (Int) -> Int
+    println((::square)(5)) // 25
+
+    println(opThenAddAnotherNum(10, 5, ::square))   // 10 + 5 * 5 = 35
+    println(opThenAddAnotherNum(10, 5) { it * it }) // 10 + 5 * 5 = 35
+}
+```
+
+--
+
+### Class Reference
+
+🔍 On JVM: a Kotlin class (KClass) reference is **not the same** as a Java class reference.
+
+```kotlin=
+fun main() {
+    val str = "Hello!"        
+    println(str::class)      // class java.lang.String (Kotlin reflection is not available)
+    println(str::class.java) // class java.lang.String
+    
+    println(str is String)   // true
+}
+```
+
+--
+
 🔍 In Kotlin, almost everything is an expression and has a value
 
 ```kotlin=
@@ -332,6 +381,8 @@ fun main() {
 🔍 In Kotlin, function is *first class citizen*
 
 ➡️ We can pass them, return them, assign them, …
+
+➡️ Functional Programming!
 
 ---
 

@@ -349,6 +349,9 @@ p {
         
             <section >
                 <h3><a id="user-content-kotlin-bootcamp" class="anchor" href="#kotlin-bootcamp" aria-hidden="true"></a><a href="https://developer.android.com/courses/kotlin-bootcamp/overview">Kotlin Bootcamp</a></h3>
+<ul>
+<li><a href="https://play.kotlinlang.org/">Kotlin Playground</a></li>
+</ul>
 
             </section>
         
@@ -636,6 +639,50 @@ val square: (Int) -&gt; Int = { num -&gt; num * num }
             </section>
         
             <section >
+                <h3><a id="user-content-function-reference" class="anchor" href="#function-reference" aria-hidden="true"></a>Function Reference</h3>
+<p>➡️ a part of <a href="https://kotlinlang.org/docs/reflection.html">Reflection</a></p>
+<ul>
+<li>Use <code>::</code> to convert a function to lambda</li>
+<li>Then as a function type value, it can be <strong>passed to another function</strong></li>
+</ul>
+<pre><code class="language-kotlin=">fun square(num: Int): Int {
+    return num * num
+}
+
+// `::square` equals to
+// val square: (Int) -&gt; Int = { num -&gt; num * num }
+
+fun opThenAddAnotherNum(num1: Int, num2: Int, op: (Int) -&gt; Int): Int {
+    return num1 + op(num2)
+}
+
+fun main() {
+    println(square(5))     // 25
+    println(::square)      // function square (Int) -&gt; Int
+    println((::square)(5)) // 25
+
+    println(opThenAddAnotherNum(10, 5, ::square))   // 10 + 5 * 5 = 35
+    println(opThenAddAnotherNum(10, 5) { it * it }) // 10 + 5 * 5 = 35
+}
+</code></pre>
+
+            </section>
+        
+            <section >
+                <h3><a id="user-content-class-reference" class="anchor" href="#class-reference" aria-hidden="true"></a>Class Reference</h3>
+<p>🔍 On JVM: a Kotlin class (KClass) reference is <strong>not the same</strong> as a Java class reference.</p>
+<pre><code class="language-kotlin=">fun main() {
+    val str = &quot;Hello!&quot;        
+    println(str::class)      // class java.lang.String (Kotlin reflection is not available)
+    println(str::class.java) // class java.lang.String
+    
+    println(str is String)   // true
+}
+</code></pre>
+
+            </section>
+        
+            <section >
                 <p>🔍 In Kotlin, almost everything is an expression and has a value</p>
 <pre><code class="language-kotlin=">fun main() {
     val x = print(&quot;Hello!&quot;) // x: Unit
@@ -647,6 +694,7 @@ val square: (Int) -&gt; Int = { num -&gt; num * num }
             <section >
                 <p>🔍 In Kotlin, function is <em>first class citizen</em></p>
 <p>➡️ We can pass them, return them, assign them, …</p>
+<p>➡️ Functional Programming!</p>
 
             </section>
         
