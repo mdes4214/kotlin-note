@@ -547,7 +547,11 @@ fun main() {
 <li><code>hashCode()</code> and <code>equals()</code></li>
 <li><code>toString()</code></li>
 </ul>
-<pre><code class="language-kotlin=">data class User (
+
+            </section>
+        
+            <section >
+                <pre><code class="language-kotlin=">data class User (
     var id: Int = 0,
     var name: String = &quot;&quot;
 )
@@ -634,7 +638,7 @@ fun square(num: Int = 5): Int = num * num
             </section>
         
             <section >
-                <p><img src="img/scope_function.PNG" alt=""></p>
+                <img height="600" src="img/scope_function.png">
 
             </section>
         
@@ -736,7 +740,11 @@ val square: (Int) -&gt; Int = { num -&gt; num * num }
 <li>Use <code>::</code> to convert a function to lambda</li>
 <li>Then as a function type value, it can be <strong>passed to another function</strong></li>
 </ul>
-<pre><code class="language-kotlin=">fun square(num: Int): Int {
+
+            </section>
+        
+            <section >
+                <pre><code class="language-kotlin=">fun square(num: Int): Int {
     return num * num
 }
 

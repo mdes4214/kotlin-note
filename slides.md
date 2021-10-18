@@ -233,6 +233,8 @@ fun main() {
 - `hashCode()` and `equals()`
 - `toString()`
 
+--
+
 ```kotlin=
 data class User (
     var id: Int = 0,
@@ -316,7 +318,7 @@ fun square(num: Int = 5): Int = num * num
 
 --
 
-![](img/scope_function.PNG)
+<img height="600" src="img/scope_function.png">
 
 --
 
@@ -420,6 +422,8 @@ val square: (Int) -> Int = { num -> num * num }
 
 - Use `::` to convert a function to lambda
 - Then as a function type value, it can be **passed to another function**
+
+--
 
 ```kotlin=
 fun square(num: Int): Int {
