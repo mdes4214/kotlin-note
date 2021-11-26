@@ -318,7 +318,7 @@ fun square(num: Int = 5): Int = num * num
 
 --
 
-<img height="600" src="img/scope_function.png">
+<img height="600" src="img/scope_function.PNG">
 
 --
 
